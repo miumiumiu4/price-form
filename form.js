@@ -10,7 +10,7 @@
   sel($("media"), C.MEDIA || ["共通"]); $("from").value = today();
   if (!C.GAS_URL) $("demo").hidden = false;
   if (C.GAS_URL && !(LINK.c && LINK.t)) { $("f").hidden = true; $("intro").insertAdjacentHTML("beforeend", "<p class='err'>会社から届いたリンクから開いてください。</p>"); }
-  if (LINK.c && C.GAS_URL && LINK.t) fetch(C.GAS_URL + "?action=company&c=" + encodeURIComponent(LINK.c) + "&t=" + encodeURIComponent(LINK.t)).then(r => r.json()).then(j => { if (j && j.ok) $("brand").textContent = j.name + "　料金表の入力"; }).catch(() => {});
+  if (LINK.c && C.GAS_URL && LINK.t) fetch(C.GAS_URL + "?action=company&co=" + encodeURIComponent(LINK.c) + "&t=" + encodeURIComponent(LINK.t)).then(r => r.json()).then(j => { if (j && j.ok) $("brand").textContent = j.name + "　料金表の入力"; }).catch(() => {});
 
   // 項目の一覧：prices.json（本部の標準の項目）を並べる。単価は空欄（会社が自分の金額を入れる）。標準の金額は、目安として小さく出す
   const addRow = (code, label, hint) => {
