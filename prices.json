@@ -1,0 +1,307 @@
+{
+  "_note": "このファイルは tools/sync-prices.mjs が gas/company/PurePublic.gs から自動で作ります。直接書きかえないでください。",
+  "updated": "2026-10-02",
+  "taxIncluded": true,
+  "maxCount": 20,
+  "groups": [
+    {
+      "id": "aircon",
+      "label": "エアコンクリーニング"
+    },
+    {
+      "id": "washer",
+      "label": "洗濯機クリーニング"
+    },
+    {
+      "id": "water",
+      "label": "水回りクリーニング"
+    },
+    {
+      "id": "vacant",
+      "label": "空室清掃"
+    }
+  ],
+  "items": [
+    {
+      "code": "aircon_wall",
+      "label": "エアコンクリーニング 壁掛け",
+      "price": 8900,
+      "group": "aircon",
+      "unit": "1台"
+    },
+    {
+      "code": "aircon_auto",
+      "label": "エアコンクリーニング お掃除機能付き",
+      "price": 14900,
+      "group": "aircon",
+      "unit": "1台"
+    },
+    {
+      "code": "washer_vertical",
+      "label": "洗濯機クリーニング 縦型",
+      "price": 14900,
+      "group": "washer",
+      "unit": "1台"
+    },
+    {
+      "code": "washer_drum",
+      "label": "洗濯機クリーニング ドラム式",
+      "price": 22900,
+      "group": "washer",
+      "unit": "1台"
+    },
+    {
+      "code": "bath",
+      "label": "浴室クリーニング",
+      "price": 14900,
+      "group": "water",
+      "unit": "1か所"
+    },
+    {
+      "code": "kitchen",
+      "label": "キッチンクリーニング",
+      "price": 12900,
+      "group": "water",
+      "unit": "1か所"
+    },
+    {
+      "code": "washroom",
+      "label": "洗面所クリーニング",
+      "price": 7900,
+      "group": "water",
+      "unit": "1か所"
+    },
+    {
+      "code": "toilet",
+      "label": "トイレクリーニング",
+      "price": 7900,
+      "group": "water",
+      "unit": "1か所"
+    },
+    {
+      "code": "vacant_1R",
+      "label": "空室清掃 1R・1K",
+      "price": 21900,
+      "group": "vacant",
+      "unit": "1戸"
+    },
+    {
+      "code": "vacant_1LDK",
+      "label": "空室清掃 1LDK・2DK",
+      "price": 32900,
+      "group": "vacant",
+      "unit": "1戸"
+    },
+    {
+      "code": "vacant_2LDK",
+      "label": "空室清掃 2LDK・3DK",
+      "price": 44900,
+      "group": "vacant",
+      "unit": "1戸"
+    },
+    {
+      "code": "vacant_3LDK",
+      "label": "空室清掃 3LDK",
+      "price": 57900,
+      "group": "vacant",
+      "unit": "1戸"
+    },
+    {
+      "code": "vacant_4LDK_plus",
+      "label": "空室清掃 4LDK以上",
+      "price": null,
+      "group": "vacant",
+      "unit": "1戸"
+    }
+  ],
+  "options": [
+    {
+      "code": "mold",
+      "label": "防カビ",
+      "price": 3000
+    },
+    {
+      "code": "outdoor",
+      "label": "室外機",
+      "price": 4000
+    },
+    {
+      "code": "drain",
+      "label": "ドレン",
+      "price": 2500
+    }
+  ],
+  "set3": {
+    "label": "3点セット（防カビ・室外機・ドレン）",
+    "price": 7000,
+    "separatePrice": 9500
+  },
+  "weekdayFreeOption": "mold",
+  "parkingNote": "駐車場代は別です（実費）",
+  "freeServiceLine": {
+    "label": "トイレとお風呂の排水溝の掃除",
+    "note": "エアコン1台のご依頼から無料"
+  },
+  "noExtraFeePromise": "ご案内した総額（税込）から、追加料金はいただきません。ただし次の場合は例外です。（1）駐車場代は別です（実費）。（2）4LDK以上の空室清掃は見積りです。（3）お申し込みと違う機種・台数・特殊な作業（高所・分解できない など）が現場で分かった場合は、理由と写真をお見せして、お客様が「承認」するまで作業も請求もしません（見送りも自由です）。",
+  "exceptions": [
+    "駐車場代（実費・別）",
+    "4LDK以上の空室清掃（見積り）",
+    "申し込みと違う機種・台数・特殊作業が現場で分かった場合（写真つきで相談し、お客様が承認した時だけ）"
+  ],
+  "disclaimer": "これは自動計算の目安です。最終の金額・条件は、予約の確認画面でお客様が確認したものが優先されます。",
+  "policy": {
+    "cancellation": {
+      "rules": [
+        {
+          "when": "作業日の前々日まで",
+          "feeRate": 0,
+          "text": "無料"
+        },
+        {
+          "when": "作業日の前日",
+          "feeRate": 0.5,
+          "text": "料金の50%"
+        },
+        {
+          "when": "作業日の当日（連絡なしを含む）",
+          "feeRate": 1,
+          "text": "料金の100%"
+        }
+      ],
+      "text": "キャンセル料は、前々日まで無料・前日50%・当日100%です。"
+    },
+    "reschedule": {
+      "freeReasons": [
+        "天気",
+        "渋滞",
+        "体調不良",
+        "職人都合"
+      ],
+      "text": "天気・渋滞・体調不良・職人の都合による日にち変更は、いつでも無料です（仮）。それ以外の日にち変更は、キャンセルと同じ料金の決まりです（前々日まで無料・前日50%・当日100%）。",
+      "pending": "仮：この内容は、三浦さんが最終に決めます"
+    },
+    "warranty": {
+      "days": 7,
+      "text": "作業後7日（1週間）は保証します。作業した場所に、作業が原因の問題があった時は、無料でやり直しに伺います。",
+      "excluded": [
+        "作業と関係のない故障・経年の劣化（仮）",
+        "お客様や第三者が、作業後に手を加えたもの（仮）",
+        "保証期間をすぎてからのご連絡"
+      ]
+    }
+  },
+  "areas": [
+    {
+      "code": "14101",
+      "label": "横浜市鶴見区"
+    },
+    {
+      "code": "14102",
+      "label": "横浜市神奈川区"
+    },
+    {
+      "code": "14103",
+      "label": "横浜市西区"
+    },
+    {
+      "code": "14104",
+      "label": "横浜市中区"
+    },
+    {
+      "code": "14105",
+      "label": "横浜市南区"
+    },
+    {
+      "code": "14106",
+      "label": "横浜市保土ケ谷区"
+    },
+    {
+      "code": "14107",
+      "label": "横浜市磯子区"
+    },
+    {
+      "code": "14108",
+      "label": "横浜市金沢区"
+    },
+    {
+      "code": "14109",
+      "label": "横浜市港北区"
+    },
+    {
+      "code": "14110",
+      "label": "横浜市戸塚区"
+    },
+    {
+      "code": "14111",
+      "label": "横浜市港南区"
+    },
+    {
+      "code": "14112",
+      "label": "横浜市旭区"
+    },
+    {
+      "code": "14113",
+      "label": "横浜市緑区"
+    },
+    {
+      "code": "14114",
+      "label": "横浜市瀬谷区"
+    },
+    {
+      "code": "14115",
+      "label": "横浜市栄区"
+    },
+    {
+      "code": "14116",
+      "label": "横浜市泉区"
+    },
+    {
+      "code": "14117",
+      "label": "横浜市青葉区"
+    },
+    {
+      "code": "14118",
+      "label": "横浜市都筑区"
+    },
+    {
+      "code": "14100",
+      "label": "横浜市"
+    },
+    {
+      "code": "14131",
+      "label": "川崎市川崎区"
+    },
+    {
+      "code": "14132",
+      "label": "川崎市幸区"
+    },
+    {
+      "code": "14133",
+      "label": "川崎市中原区"
+    },
+    {
+      "code": "14134",
+      "label": "川崎市高津区"
+    },
+    {
+      "code": "14135",
+      "label": "川崎市多摩区"
+    },
+    {
+      "code": "14136",
+      "label": "川崎市宮前区"
+    },
+    {
+      "code": "14137",
+      "label": "川崎市麻生区"
+    },
+    {
+      "code": "14130",
+      "label": "川崎市"
+    },
+    {
+      "code": "13209",
+      "label": "町田市"
+    }
+  ]
+}

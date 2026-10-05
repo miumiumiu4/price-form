@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>料金表の入力</title><meta name="robots" content="noindex">
+<link rel="stylesheet" href="form.css"></head>
+<body>
+<header class="top"><div class="wrap"><div class="brand" id="brand">料金表の入力</div></div></header>
+<main class="wrap">
+  <section class="card hero" id="intro"><h1>料金表の入力</h1>
+    <p>作業に行く担当者が、現場で料金をすぐ確認できるように、<b>会社ごと・媒体ごと</b>の料金を入れてください。入力したものは、担当者の作業報告の画面に反映されます。</p>
+    <p class="note">金額はすべて<b>税込</b>です。料金を変えたいときは、同じ媒体・同じ項目を、もう一度入れ直してください。あとから入れた金額が、すぐ使われます（古い金額は消さずに残ります）。</p>
+    <p class="note" id="demo" hidden>（デモ表示です。送信しても記録されません）</p></section>
+  <form id="f" novalidate autocomplete="off">
+    <section class="card"><h2><span class="no">1</span>どの媒体の料金ですか</h2>
+      <div class="q"><label class="lab" for="media">媒体</label><select id="media"></select>
+        <p class="note">「共通」＝どの媒体にも当てはまる料金。媒体ごとの行があれば、そちらが優先されます。</p></div>
+      <div class="q"><label class="lab" for="by">入力した人のお名前（任意）</label><input type="text" id="by" class="t" maxlength="30" autocomplete="name"></div></section>
+    <section class="card"><h2><span class="no">2</span>料金（税込）</h2>
+      <p class="sub">分かる項目だけで大丈夫です。空欄の項目は、保存されません。</p>
+      <table class="ptable" id="items"></table>
+      <button type="button" class="ghost addrow" id="add">項目を足す（上にない作業・オプションなど）</button></section>
+    <section class="card"><h2><span class="no">3</span>いつから使いますか</h2>
+      <div class="q"><label class="lab" for="from">適用開始日</label><input type="date" id="from" class="d" required>
+        <p class="note">ふつうは<b>今日</b>のままで大丈夫です（入れた金額がすぐ使われます）。次の日にまた金額を変えたくなったら、同じ項目をもう一度入れ直してください。<b>あとから入れた金額が優先</b>されます。古い金額は消えずに残り、過去の作業の計算は、その作業をした日の金額のままです。</p></div>
+      <details class="q"><summary class="small">期間を決めた料金にしたいとき（任意・ふだんは使いません）</summary>
+        <label class="agree"><input type="checkbox" id="season"><span>この料金は<b>期間だけ</b>です</span></label>
+        <div id="seasonbox" hidden>
+          <div class="seasonrow"><div class="q"><label class="lab" for="to">適用終了日</label><input type="date" id="to" class="d"></div></div>
+          <label class="agree"><input type="checkbox" id="repeat"><span><b>毎年</b>同じ時期にくり返す（開始日・終了日の「月と日」だけ使います）</span></label>
+          <p class="note">期間が終わると元の金額に戻ります。決まった時期がない場合は、使わなくて大丈夫です。</p></div></details>
+      <div class="q"><label class="lab" for="note">メモ（任意）</label><input type="text" id="note" class="t" maxlength="120" placeholder="例：夏の繁忙期料金"></div>
+      <p class="err" id="err" role="alert" hidden></p>
+      <button type="submit" id="submit" class="primary">この内容で送信する</button></section>
+  </form>
+  <section id="done" class="card" hidden></section>
+</main>
+<footer class="wrap foot"><p>ここには、料金だけを入れます。お客様のお名前・ご住所・お電話は入れないでください。</p></footer>
+<script src="config.js"></script><script src="form.js"></script>
+</body></html>
