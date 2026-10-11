@@ -1,7 +1,13 @@
 (() => {
   const C = window.PS_CONFIG || {}, $ = id => document.getElementById(id);
   const P = new URLSearchParams(location.search), param = k => (P.get(k) || "").slice(0, 80);
-  const LINK = { c: param("c"), t: param("t") };
+  // 合言葉（会社に1つ・長く使う）は、アドレス欄・履歴に残さない：開いたらこのタブの中（sessionStorage）に移して URL から消す（2026-10-11 セキュリティ）
+  const KEY = "price-form.link";
+  let LINK = { c: param("c"), t: param("t") };
+  try {
+    if (LINK.c && LINK.t) { sessionStorage.setItem(KEY, JSON.stringify(LINK)); if (history.replaceState) history.replaceState(null, "", location.pathname); }
+    else { const saved = JSON.parse(sessionStorage.getItem(KEY) || "null"); if (saved && saved.c && saved.t) LINK = saved; }
+  } catch (e) { /* 保存が使えない時は、URL のまま */ }
   const postJson = (url, o) => fetch(url, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(o) }).then(r => r.json());
   const mk = (tag, attrs, kids) => { const e = document.createElement(tag); Object.entries(attrs || {}).forEach(([k, v]) => k === "class" ? e.className = v : e.setAttribute(k, v)); (kids || []).forEach(x => e.appendChild(typeof x === "string" ? document.createTextNode(x) : x)); return e; };
   const today = () => { const d = new Date(), z = n => String(n).padStart(2, "0"); return d.getFullYear() + "-" + z(d.getMonth() + 1) + "-" + z(d.getDate()); };
@@ -10,7 +16,7 @@
   sel($("media"), C.MEDIA || ["共通"]); $("from").value = today();
   if (!C.GAS_URL) $("demo").hidden = false;
   if (C.GAS_URL && !(LINK.c && LINK.t)) { $("f").hidden = true; $("intro").insertAdjacentHTML("beforeend", "<p class='err'>会社から届いたリンクから開いてください。</p>"); }
-  if (LINK.c && C.GAS_URL && LINK.t) fetch(C.GAS_URL + "?action=company&co=" + encodeURIComponent(LINK.c) + "&t=" + encodeURIComponent(LINK.t)).then(r => r.json()).then(j => { if (j && j.ok) $("brand").textContent = j.name + "　料金表の入力"; }).catch(() => {});
+  if (LINK.c && C.GAS_URL && LINK.t) postJson(C.GAS_URL, { action: "company", co: LINK.c, t: LINK.t }).then(j => { if (j && j.ok) $("brand").textContent = j.name + "　料金表の入力"; }).catch(() => {});
 
   // 項目の一覧：prices.json（本部の標準の項目）を並べる。単価は空欄（会社が自分の金額を入れる）。標準の金額は、目安として小さく出す
   const addRow = (code, label, hint) => {
@@ -49,7 +55,7 @@
     }
     if (!rows.length) return err("金額を入れた項目がありません。");
     const btn = $("submit"); btn.disabled = true; btn.textContent = "送信しています…";
-    const body = { c: LINK.c, t: LINK.t, media: $("media").value, by: $("by").value.trim(), rows };
+    const body = { c: LINK.c, t: LINK.t, media: $("media").value, by: $("by").value.trim(), rows, website: ($("hp") || {}).value || "" };
     const fin = j => { if (!j.ok) { btn.disabled = false; btn.textContent = "この内容で送信する"; return err(j.message || "送信できませんでした。"); }
       $("f").hidden = true; $("intro").hidden = true; const d = $("done"); d.hidden = false;
       d.innerHTML = "<div class='thanks'><h2>入力ありがとうございました</h2><p></p><p class='note'>続けて、別の媒体の料金を入れるときは、ページを開き直してください。</p></div>";

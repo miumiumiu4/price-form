@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>料金表の入力</title><meta name="robots" content="noindex">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="no-referrer">
 <link rel="stylesheet" href="form.css"></head>
 <body>
 <header class="top"><div class="wrap"><div class="brand" id="brand">料金表の入力</div></div></header>
@@ -10,6 +12,7 @@
     <p class="note">金額はすべて<b>税込</b>です。料金を変えたいときは、同じ媒体・同じ項目を、もう一度入れ直してください。あとから入れた金額が、すぐ使われます（古い金額は消さずに残ります）。</p>
     <p class="note" id="demo" hidden>（デモ表示です。送信しても記録されません）</p></section>
   <form id="f" novalidate autocomplete="off">
+    <input type="text" name="website" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">
     <section class="card"><h2><span class="no">1</span>どの媒体の料金ですか</h2>
       <div class="q"><label class="lab" for="media">媒体</label><select id="media"></select>
         <p class="note">「共通」＝どの媒体にも当てはまる料金。媒体ごとの行があれば、そちらが優先されます。</p></div>
